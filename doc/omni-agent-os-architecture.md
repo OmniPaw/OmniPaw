@@ -11,7 +11,7 @@ OmniPaw is a deterministic agent runtime organized as a set of composable, side-
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                       OMNIAXIOM KERNEL                      │
+│                       OMNIPAW KERNEL                        │
 │                                                             │
 │  ┌──────────┐    ┌──────────────┐    ┌──────────────────┐  │
 │  │  Agent   │───▶│  Lifecycle   │───▶│  Execution Loop  │  │
