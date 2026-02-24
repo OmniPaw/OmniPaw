@@ -22,6 +22,7 @@
   "author": "OmniPaw",
   "license": "MIT",
   "devDependencies": {
+    "@types/blessed": "^0.1.27",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.3.0",
     "jest": "^30.2.0",
@@ -32,6 +33,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
     "@google/genai": "^1.42.0",
+    "blessed": "^0.1.81",
     "dotenv": "^17.3.1",
     "openai": "^6.22.0",
     "puppeteer": "^24.37.5"
