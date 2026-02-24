@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "kernel/**/*.ts",
+    "identity/**/*.ts",
+    "execution/**/*.ts",
+    "lifecycle/**/*.ts",
+    "tools/**/*.ts",
+    "memory/**/*.ts",
+    "permissions/**/*.ts",
+    "delegation/**/*.ts",
+    "logging/**/*.ts",
+    "failure/**/*.ts",
+    "host/**/*.ts",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts"
+  ]
+}
