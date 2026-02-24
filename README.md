@@ -1,4 +1,8 @@
 # OmniPaw
+<p align="center">
+  <img src="doc/omnipaw-logo.png" width="400" alt="OmniPaw Logo" />
+</p>
+
 **Deterministic execution substrate for autonomous systems.**
 
 Most AI agent frameworks today suffer from a critical flaw: they are fundamentally unpredictable. When an agent hallucinates a destructive action, fails a complex task, or corrupts state, developers are left with scattered logs, unprovable execution paths, and no way to reliably reproduce the failure. You cannot rewind an execution, prove the cryptographic integrity of a tool call, or guarantee that an agent won't silently violate security boundaries.

@@ -1,5 +1,10 @@
 # OmniPaw — Deterministic Kernel Architecture
 
+<p align="center">
+  <img src="omnipaw-logo.png" width="300" alt="OmniPaw Logo" />
+</p>
+
+
 > **Scope:** Core runtime only. No UI, no cloud deployment, no monetization.
 > **Design philosophy:** Minimal OS kernel — explicit state, no hidden globals, full replayability.
 
