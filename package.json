@@ -1,0 +1,38 @@
+{
+  "name": "@omnipaw/kernel",
+  "version": "1.0.0",
+  "description": "Deterministic multi-agent execution kernel and replay runtime.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "start": "ts-node host/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "agent",
+    "os",
+    "ai",
+    "deterministic",
+    "kernel",
+    "replay",
+    "sandbox"
+  ],
+  "author": "OmniPaw",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.3.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@google/genai": "^1.42.0",
+    "dotenv": "^17.3.1",
+    "openai": "^6.22.0"
+  }
+}
