@@ -5,6 +5,8 @@ import { LifecycleController } from '../lifecycle/controller';
 import { ToolGate } from '../tools/gate';
 import { PersistentStore } from '../memory/persistent';
 import { KernelConfig } from '../kernel/config';
+import { TelemetryProvider } from '../host/telemetry/provider';
+import { QuotaEnforcer, QuotaExceededError } from './quota';
 
 function hashState(state: any): string {
     const stableStringify = (obj: any): string => {
@@ -18,6 +20,8 @@ function hashState(state: any): string {
 }
 
 export class Scheduler {
+    public readonly quotaEnforcer = new QuotaEnforcer();
+
     constructor(
         private readonly tickEngine: TickEngine,
         private readonly logger: ExecutionLogger,
@@ -27,108 +31,140 @@ export class Scheduler {
         private readonly persistentStore?: PersistentStore
     ) { }
 
-    runAgentLoop(agentId: string, initialInstruction: Instruction): void {
+    async runAgentLoop(agentId: string, initialInstruction: Instruction): Promise<void> {
         // Agent must be ACTIVE before running
         if (this.lifecycle.getState(agentId) !== 'ACTIVE') {
             throw new Error(`Agent ${agentId} is not ACTIVE`);
         }
 
-        let sequenceNumber = 1;
-        let currentInstruction = initialInstruction;
-        let isRunning = true;
+        const telemetry = TelemetryProvider.getInstance();
+        telemetry.agentSpawnCounter.add(1, { agentId });
 
-        while (isRunning) {
-            const input: TickInput = {
-                agentId,
-                sequenceNumber,
-                instruction: currentInstruction,
-                maxSteps: 100
-            };
+        return telemetry.tracer.startActiveSpan(`Scheduler.runAgentLoop [${agentId}]`, async (span) => {
+            span.setAttribute('agent.id', agentId);
+            span.setAttribute('kernel.mode', this.config.getMode());
 
-            const output: TickOutput = this.tickEngine.runTick(input);
+            try {
+                let sequenceNumber = 1;
+                let currentInstruction = initialInstruction;
+                let isRunning = true;
 
-            const kernelState = {
-                output,
-                lifecycle: this.lifecycle.getState(agentId),
-                memory: this.persistentStore ? this.persistentStore.snapshot(agentId) : {}
-            };
-            const stateHash = hashState(kernelState);
+                while (isRunning) {
+                    this.quotaEnforcer.consumeTick(agentId);
 
-            if (this.config.getMode() === 'LIVE') {
-                // Log TICK_OUTPUT
-                this.logger.append({
-                    kind: 'TICK_OUTPUT',
-                    agentId,
-                    timestamp: Date.now(),
-                    payload: {
+                    const input: TickInput = {
+                        agentId,
                         sequenceNumber,
                         instruction: currentInstruction,
+                        maxSteps: 100
+                    };
+
+                    const output: TickOutput = this.tickEngine.runTick(input);
+
+                    const kernelState = {
                         output,
-                        stateHash
-                    }
-                });
-            } else {
-                // Validate Cryptographic Trace in REPLAY MODE
-                const logs = this.logger.getLogsForAgent(agentId);
-                const targetLog = logs.find(l => l.kind === 'TICK_OUTPUT' && (l.payload as any)?.sequenceNumber === sequenceNumber);
+                        lifecycle: this.lifecycle.getState(agentId),
+                        memory: this.persistentStore ? this.persistentStore.snapshot(agentId) : {}
+                    };
+                    const stateHash = hashState(kernelState);
 
-                if (!targetLog) {
-                    throw new Error("REPLAY_MISSING_LOG");
-                }
-
-                const loggedHash = (targetLog.payload as any).stateHash;
-                if (loggedHash !== stateHash) {
-                    throw new Error(`CRYPTOGRAPHIC_DIVERGENCE: Hash mismatch at tick ${sequenceNumber}. Expected ${loggedHash}, got ${stateHash}`);
-                }
-            }
-
-            switch (output.kind) {
-                case 'COMPLETED':
                     if (this.config.getMode() === 'LIVE') {
-                        this.lifecycle.transition(agentId, 'complete'); // ACTIVE -> COMPLETING
-                        this.lifecycle.transition(agentId, 'teardown_ok'); // COMPLETING -> TERMINATED
+                        // Log TICK_OUTPUT
+                        this.logger.append({
+                            kind: 'TICK_OUTPUT',
+                            agentId,
+                            timestamp: Date.now(),
+                            payload: {
+                                sequenceNumber,
+                                instruction: currentInstruction,
+                                output,
+                                stateHash
+                            }
+                        });
                     } else {
-                        // Advance to terminated for local loop control without emitting false transitions safely
-                        (this.lifecycle as any).stateMap.set(agentId, 'TERMINATED');
-                    }
-                    isRunning = false;
-                    break;
+                        // Validate Cryptographic Trace in REPLAY MODE
+                        const logs = this.logger.getLogsForAgent(agentId);
+                        const targetLog = logs.find(l => l.kind === 'TICK_OUTPUT' && (l.payload as any)?.sequenceNumber === sequenceNumber);
 
-                case 'FAILED':
+                        if (!targetLog) {
+                            throw new Error("REPLAY_MISSING_LOG");
+                        }
+
+                        const loggedHash = (targetLog.payload as any).stateHash;
+                        if (loggedHash !== stateHash) {
+                            throw new Error(`CRYPTOGRAPHIC_DIVERGENCE: Hash mismatch at tick ${sequenceNumber}. Expected ${loggedHash}, got ${stateHash}`);
+                        }
+                    }
+
+                    switch (output.kind) {
+                        case 'COMPLETED':
+                            if (this.config.getMode() === 'LIVE') {
+                                this.lifecycle.transition(agentId, 'complete'); // ACTIVE -> COMPLETING
+                                this.lifecycle.transition(agentId, 'teardown_ok'); // COMPLETING -> TERMINATED
+                            } else {
+                                // Advance to terminated for local loop control without emitting false transitions safely
+                                (this.lifecycle as any).stateMap.set(agentId, 'TERMINATED');
+                            }
+                            span.setAttribute('loop.exit', 'COMPLETED');
+                            isRunning = false;
+                            break;
+
+                        case 'FAILED':
+                            if (this.config.getMode() === 'LIVE') {
+                                this.lifecycle.transition(agentId, 'error'); // ACTIVE -> FAULTED
+                            } else {
+                                (this.lifecycle as any).stateMap.set(agentId, 'FAULTED');
+                            }
+                            span.setAttribute('loop.exit', 'FAILED');
+                            span.setAttribute('error', true);
+                            isRunning = false;
+                            break;
+
+                        case 'PENDING_TOOL':
+                            this.quotaEnforcer.consumeToolCall(agentId);
+
+                            // FIX: Await the async tool execution
+                            const toolResult = await this.toolGate.execute(
+                                agentId,
+                                sequenceNumber,
+                                output.toolName,
+                                output.args
+                            );
+
+                            currentInstruction = {
+                                kind: 'RETURN',
+                                value: toolResult
+                            };
+
+                            sequenceNumber++;
+                            break;
+
+                        case 'PENDING_DELEGATION':
+                            if (this.config.getMode() === 'LIVE') {
+                                this.lifecycle.transition(agentId, 'yield'); // ACTIVE -> WAITING
+                            } else {
+                                (this.lifecycle as any).stateMap.set(agentId, 'WAITING');
+                            }
+                            span.setAttribute('loop.exit', 'DELEGATED');
+                            isRunning = false;
+                            break;
+                    }
+                }
+            } catch (e: any) {
+                if (e.name === 'QuotaExceededError') {
                     if (this.config.getMode() === 'LIVE') {
-                        this.lifecycle.transition(agentId, 'error'); // ACTIVE -> FAULTED
+                        try { this.lifecycle.transition(agentId, 'error'); } catch (_) { }
                     } else {
                         (this.lifecycle as any).stateMap.set(agentId, 'FAULTED');
                     }
-                    isRunning = false;
-                    break;
-
-                case 'PENDING_TOOL':
-                    const toolResult = this.toolGate.execute(
-                        agentId,
-                        sequenceNumber,
-                        output.toolName,
-                        output.args
-                    );
-
-                    currentInstruction = {
-                        kind: 'RETURN',
-                        value: toolResult
-                    };
-
-                    sequenceNumber++;
-                    // continue loop implicitly
-                    break;
-
-                case 'PENDING_DELEGATION':
-                    if (this.config.getMode() === 'LIVE') {
-                        this.lifecycle.transition(agentId, 'yield'); // ACTIVE -> WAITING
-                    } else {
-                        (this.lifecycle as any).stateMap.set(agentId, 'WAITING');
-                    }
-                    isRunning = false;
-                    break;
+                    span.setAttribute('loop.exit', 'QUOTA_EXCEEDED');
+                }
+                span.recordException(e);
+                span.setAttribute('error', true);
+                throw e;
+            } finally {
+                span.end();
             }
-        }
+        });
     }
 }

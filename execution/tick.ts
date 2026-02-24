@@ -1,3 +1,5 @@
+import { TelemetryProvider } from '../host/telemetry/provider';
+
 export type AgentId = string;
 
 export type Instruction =
@@ -21,40 +23,58 @@ export type TickOutput =
 
 export class TickEngine {
     runTick(input: TickInput): TickOutput {
-        // Enforcement of maxSteps. 
-        // Since each runTick evaluates exactly one instruction (per user prompt),
-        // we simply check if maxSteps is at least 1.
-        if (input.maxSteps < 1) {
-            return { kind: "FAILED", error: "TICK_OVERFLOW" };
-        }
+        const telemetry = TelemetryProvider.getInstance();
+        telemetry.tickCounter.add(1, { agentId: input.agentId });
 
-        const { instruction } = input;
+        return telemetry.tracer.startActiveSpan(`TickEngine.runTick [${input.sequenceNumber}]`, (span) => {
+            span.setAttribute('agent.id', input.agentId);
+            span.setAttribute('tick.sequence', input.sequenceNumber);
+            span.setAttribute('instruction.kind', input.instruction.kind);
 
-        switch (instruction.kind) {
-            case "NOOP":
-                return { kind: "COMPLETED", result: null };
+            try {
+                if (input.maxSteps < 1) {
+                    const res = { kind: "FAILED" as const, error: "TICK_OVERFLOW" };
+                    span.setAttribute('tick.result', res.kind);
+                    return res;
+                }
 
-            case "RETURN":
-                return { kind: "COMPLETED", result: instruction.value };
+                let result: TickOutput;
+                switch (input.instruction.kind) {
+                    case "NOOP":
+                        result = { kind: "COMPLETED", result: null };
+                        break;
+                    case "RETURN":
+                        result = { kind: "COMPLETED", result: input.instruction.value };
+                        break;
+                    case "CALL_TOOL":
+                        span.setAttribute('tool.name', input.instruction.toolName);
+                        result = {
+                            kind: "PENDING_TOOL",
+                            toolName: input.instruction.toolName,
+                            args: input.instruction.args
+                        };
+                        break;
+                    case "DELEGATE":
+                        span.setAttribute('delegate.target', input.instruction.target);
+                        result = {
+                            kind: "PENDING_DELEGATION",
+                            target: input.instruction.target,
+                            payload: input.instruction.payload
+                        };
+                        break;
+                    default:
+                        result = { kind: "FAILED", error: "UNKNOWN_INSTRUCTION" };
+                }
 
-            case "CALL_TOOL":
-                return {
-                    kind: "PENDING_TOOL",
-                    toolName: instruction.toolName,
-                    args: instruction.args
-                };
-
-            case "DELEGATE":
-                return {
-                    kind: "PENDING_DELEGATION",
-                    target: instruction.target,
-                    payload: instruction.payload
-                };
-
-            default:
-                // Handle unknown instruction kinds
-                const _exhaustiveCheck: never = instruction;
-                return { kind: "FAILED", error: "UNKNOWN_INSTRUCTION" };
-        }
+                span.setAttribute('tick.result', result.kind);
+                return result;
+            } catch (e: any) {
+                span.recordException(e);
+                span.setAttribute('error', true);
+                throw e;
+            } finally {
+                span.end();
+            }
+        });
     }
 }
