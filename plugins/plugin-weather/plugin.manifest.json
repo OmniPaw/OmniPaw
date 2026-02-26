@@ -1,0 +1,20 @@
+{
+    "name": "plugin-weather",
+    "version": "1.0.0",
+    "description": "Provides weather forecast data for any city worldwide.",
+    "author": "OmniPaw Team, Chinonso Chikelue",
+    "tools": [
+        {
+            "name": "plugin-weather.get_forecast",
+            "description": "Returns a simulated weather forecast for a given city.",
+            "parameters": {
+                "city": "string"
+            },
+            "handlerModule": "./tools/forecast",
+            "handlerExport": "getForecast"
+        }
+    ],
+    "permissions": [
+        "network"
+    ]
+}

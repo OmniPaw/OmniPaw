@@ -8,6 +8,11 @@ import { PersistentStore } from '../memory/persistent';
 import { EphemeralStore } from '../memory/ephemeral';
 import { DelegationProtocol } from '../delegation/protocol';
 import { FailureHandler, ILifecycleController } from '../failure/handler';
+import { ToolGate } from '../tools/gate';
+import { TickEngine } from '../execution/tick';
+import { Scheduler } from '../execution/scheduler';
+import { KernelConfig } from './config';
+import { ReplayController } from '../execution/replay-controller';
 
 export class OmniKernel {
     public readonly bus: KernelBus;
@@ -21,8 +26,16 @@ export class OmniKernel {
     public readonly delegation: DelegationProtocol;
     public readonly failureHandler: FailureHandler;
 
+    public readonly config: KernelConfig;
+    public readonly toolGate: ToolGate;
+    public readonly tickEngine: TickEngine;
+    public readonly scheduler: Scheduler;
+    public readonly replayController: ReplayController;
+
     constructor(injectedLogger?: ExecutionLogger) {
         this.bus = new KernelBus();
+        this.config = new KernelConfig('LIVE');
+
 
         // Core Logging & Identity
         this.logger = injectedLogger || new ExecutionLogger();
@@ -52,5 +65,26 @@ export class OmniKernel {
             this.delegation,
             3 // Max Transient Retries
         );
+
+        this.toolGate = new ToolGate(this.logger, this.config, {}); // Empty base handlers
+        this.tickEngine = new TickEngine();
+        this.scheduler = new Scheduler(this.tickEngine, this.logger, this.lifecycle, this.toolGate, this.config, this.persistentStore);
+        this.replayController = new ReplayController(this.logger, this.config);
+    }
+
+    getRegistry() { return this.registry; }
+    getExecutionLogger() { return this.logger; }
+    getToolGate() { return this.toolGate; }
+    getTickEngine() { return this.tickEngine; }
+    getScheduler() { return this.scheduler; }
+    getReplayController() { return this.replayController; }
+
+    // Memory Layer wrapper struct since tests reference it this way
+    getMemoryLayer() {
+        return {
+            getPersistentStore: () => this.persistentStore,
+            getSharedStore: () => this.sharedStore,
+            getEphemeralStore: () => this.ephemeralStore
+        };
     }
 }
