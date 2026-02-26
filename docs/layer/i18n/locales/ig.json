@@ -1,0 +1,62 @@
+{
+  "common": {
+    "or": "ma ọ bụ",
+    "error": {
+      "title": "A hụghị ibe a",
+      "description": "Anyị na-arịọ mgbaghara mana a pụghị ịchọta ibe a."
+    }
+  },
+  "docs": {
+    "copy": {
+      "page": "Detuo ibe",
+      "link": "Detuo ibe Markdown",
+      "view": "Lee dị ka Markdown",
+      "gpt": "Meghee na ChatGPT",
+      "claude": "Meghee na Claude"
+    },
+    "links": "Obodo",
+    "toc": "Na ibe a",
+    "report": "Kọwaa nsogbu",
+    "edit": "Dezie ibe a"
+  },
+  "logo": {
+    "copyLogo": "Detuo logo",
+    "copyWordmark": "Detuo aha akara",
+    "downloadLogo": "Budata logo",
+    "downloadWordmark": "Budata aha akara",
+    "brandAssets": "Ngwongwo akara",
+    "logoCopied": "E deturu logo",
+    "wordmarkCopied": "E deturu aha akara",
+    "logoDownloaded": "E budatara logo",
+    "wordmarkDownloaded": "E budatara aha akara",
+    "copyLogoFailed": "Enweghị ike idetu logo",
+    "copyWordmarkFailed": "Enweghị ike idetu aha akara"
+  },
+  "assistant": {
+    "title": "Jụọ AI",
+    "placeholder": "Jụọ ajụjụ...",
+    "tooltip": "Jụọ AI ajụjụ",
+    "tryAsking": "Gbalịa ịjụ ajụjụ",
+    "askAnything": "Jụọ ihe ọ bụla...",
+    "clearChat": "Hichapụ mkparịta ụka",
+    "close": "Mechie",
+    "expand": "Gbasaa",
+    "collapse": "Kpochie",
+    "thinking": "Na-eche echiche...",
+    "askMeAnything": "Jụọ ihe ọ bụla",
+    "askMeAnythingDescription": "Nweta enyemaka n'ịchọgharị akwụkwọ, ịghọta echiche, na ịchọta azịza.",
+    "faq": "Ajụjụ a na-ajụkarị",
+    "chatCleared": "A ga-ehichapụ mkparịta ụka mgbe emelitere ibe",
+    "lineBreak": "Nkewa ahịrị",
+    "explainWithAi": "Kọwaa ya na AI",
+    "toolListPages": "Ndepụta ibe akwụkwọ",
+    "toolReadPage": "Gụọ",
+    "loading": {
+      "searching": "Na-achọ n'ime akwụkwọ",
+      "reading": "Na-agụ akwụkwọ",
+      "analyzing": "Na-enyocha ọdịnaya",
+      "finding": "Na-achọta azịza kacha mma",
+      "finished": "Isi mmalite ejiri"
+    }
+  }
+}

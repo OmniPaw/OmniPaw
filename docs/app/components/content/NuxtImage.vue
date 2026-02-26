@@ -1,0 +1,87 @@
+<template>
+  <div class="w-full flex items-center justify-center">
+    <svg
+      width="309"
+      height="309"
+      viewBox="0 0 309 309"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="0"
+        y="0"
+        width="309"
+        height="309"
+        rx="8"
+        fill="url(#paint0_linear_549_2095)"
+        fill-opacity="0.2"
+      />
+      <rect
+        x="0.5"
+        y="0.5"
+        width="308"
+        height="308"
+        rx="8"
+        stroke="url(#paint1_linear_549_2095)"
+        stroke-opacity="0.4"
+      />
+      <path
+        d="M250.424 224.554C251.995 199.097 246.309 173.754 234.01 151.409C221.753 129.139 206.184 104.281 197.759 104.281C182.497 104.281 159.941 135.743 151.205 139.926C139.866 129.94 100.698 80.5 88.8565 80.5C77.0152 80.5 29.4718 153.81 20.6396 172.34C6.93039 201.102 2.09076 293.5 22.2949 293.5C35.8243 293.5 51.7545 293.459 69.0776 293.414C108.704 293.311 190.075 293.104 232.215 293.414C243.818 293.499 248.52 255.423 250.424 224.554Z"
+        fill="url(#paint2_linear_549_2095)"
+        fill-opacity="0.3"
+      />
+      <path
+        d="M241.47 38.3696C241.47 47.4864 234.079 54.877 224.963 54.877C215.846 54.877 208.455 47.4864 208.455 38.3696C208.455 29.2529 215.846 21.8623 224.963 21.8623C234.079 21.8623 241.47 29.2529 241.47 38.3696Z"
+        fill="white"
+        fill-opacity="0.3"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_549_2095"
+          x1="154.5"
+          y1="0.5"
+          x2="154.5"
+          y2="308.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop
+            offset="1"
+            stop-color="white"
+            stop-opacity="0"
+          />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear_549_2095"
+          x1="154.5"
+          y1="0.5"
+          x2="154.5"
+          y2="308.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop
+            offset="1"
+            stop-color="white"
+            stop-opacity="0"
+          />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear_549_2095"
+          x1="126.999"
+          y1="48.1171"
+          x2="132.171"
+          y2="247.688"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop
+            offset="1"
+            stop-color="white"
+            stop-opacity="0"
+          />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+</template>
