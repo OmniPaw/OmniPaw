@@ -16,7 +16,7 @@ OmniPaw bụ ihe nchịkwa ọrụ ọtụtụ ndị ọrụ nke emebere maka nt
  ---
  color: brand-cyan
  size: xl
- to: /ig/getting-started/quickstart
+ to: /ig/getting-started/introduction
  trailing-icon: i-lucide-arrow-right
  ---
  Bido Ugbu A

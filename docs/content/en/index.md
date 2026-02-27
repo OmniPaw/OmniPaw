@@ -16,7 +16,7 @@ OmniPaw is a multi-agent execution kernel designed for total reproducibility. St
 ---
 color: brand-cyan
 size: xl
-to: /en/getting-started/quickstart
+to: /en/getting-started/introduction
 trailing-icon: i-lucide-arrow-right
 ---
 Get Started
