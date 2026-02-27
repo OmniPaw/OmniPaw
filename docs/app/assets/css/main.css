@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: 'Public Sans', sans-serif;
+  --ui-container: 90rem;
+
+  /* OmniPaw Brand Colors */
+  --color-brand-cyan: #00E5FF;
+  --color-brand-blue: #3B82F6;
+  --color-brand-black: #0B0F19;
+  --color-brand-white: #FFFFFF;
+  --color-brand-gray: #D1D5DB;
+}

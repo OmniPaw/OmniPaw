@@ -1,0 +1,253 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 859 554" width="859" height="554" font-family="'JetBrains Mono', 'Fira Code', 'Courier New', monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f6ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f0fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0088aa;stop-opacity:0.08" />
+      <stop offset="50%" style="stop-color:#2563eb;stop-opacity:0.06" />
+      <stop offset="100%" style="stop-color:#0088aa;stop-opacity:0.08" />
+    </linearGradient>
+    <linearGradient id="borderCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0.15" />
+    </linearGradient>
+    <linearGradient id="borderGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#16a34a;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.15" />
+    </linearGradient>
+    <linearGradient id="borderBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.15" />
+    </linearGradient>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#0891b2" opacity="0.8"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#16a34a" opacity="0.9"/>
+    </marker>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.15"/>
+    </filter>
+    <filter id="headerShadow" x="-2%" y="-5%" width="104%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#2563eb" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="859" height="554" fill="url(#bgGrad)" rx="14"/>
+
+  <!-- Subtle dot grid -->
+  <g opacity="0.18" fill="#94a3b8">
+    <circle cx="86" cy="55" r="1.2"/><circle cx="172" cy="55" r="1.2"/><circle cx="258" cy="55" r="1.2"/><circle cx="344" cy="55" r="1.2"/><circle cx="430" cy="55" r="1.2"/><circle cx="516" cy="55" r="1.2"/><circle cx="602" cy="55" r="1.2"/><circle cx="688" cy="55" r="1.2"/><circle cx="774" cy="55" r="1.2"/>
+    <circle cx="86" cy="110" r="1.2"/><circle cx="172" cy="110" r="1.2"/><circle cx="258" cy="110" r="1.2"/><circle cx="344" cy="110" r="1.2"/><circle cx="430" cy="110" r="1.2"/><circle cx="516" cy="110" r="1.2"/><circle cx="602" cy="110" r="1.2"/><circle cx="688" cy="110" r="1.2"/><circle cx="774" cy="110" r="1.2"/>
+    <circle cx="86" cy="165" r="1.2"/><circle cx="172" cy="165" r="1.2"/><circle cx="258" cy="165" r="1.2"/><circle cx="344" cy="165" r="1.2"/><circle cx="430" cy="165" r="1.2"/><circle cx="516" cy="165" r="1.2"/><circle cx="602" cy="165" r="1.2"/><circle cx="688" cy="165" r="1.2"/><circle cx="774" cy="165" r="1.2"/>
+    <circle cx="86" cy="220" r="1.2"/><circle cx="172" cy="220" r="1.2"/><circle cx="258" cy="220" r="1.2"/><circle cx="344" cy="220" r="1.2"/><circle cx="430" cy="220" r="1.2"/><circle cx="516" cy="220" r="1.2"/><circle cx="602" cy="220" r="1.2"/><circle cx="688" cy="220" r="1.2"/><circle cx="774" cy="220" r="1.2"/>
+    <circle cx="86" cy="275" r="1.2"/><circle cx="172" cy="275" r="1.2"/><circle cx="258" cy="275" r="1.2"/><circle cx="344" cy="275" r="1.2"/><circle cx="430" cy="275" r="1.2"/><circle cx="516" cy="275" r="1.2"/><circle cx="602" cy="275" r="1.2"/><circle cx="688" cy="275" r="1.2"/><circle cx="774" cy="275" r="1.2"/>
+    <circle cx="86" cy="330" r="1.2"/><circle cx="172" cy="330" r="1.2"/><circle cx="258" cy="330" r="1.2"/><circle cx="344" cy="330" r="1.2"/><circle cx="430" cy="330" r="1.2"/><circle cx="516" cy="330" r="1.2"/><circle cx="602" cy="330" r="1.2"/><circle cx="688" cy="330" r="1.2"/><circle cx="774" cy="330" r="1.2"/>
+    <circle cx="86" cy="385" r="1.2"/><circle cx="172" cy="385" r="1.2"/><circle cx="258" cy="385" r="1.2"/><circle cx="344" cy="385" r="1.2"/><circle cx="430" cy="385" r="1.2"/><circle cx="516" cy="385" r="1.2"/><circle cx="602" cy="385" r="1.2"/><circle cx="688" cy="385" r="1.2"/><circle cx="774" cy="385" r="1.2"/>
+    <circle cx="86" cy="440" r="1.2"/><circle cx="172" cy="440" r="1.2"/><circle cx="258" cy="440" r="1.2"/><circle cx="344" cy="440" r="1.2"/><circle cx="430" cy="440" r="1.2"/><circle cx="516" cy="440" r="1.2"/><circle cx="602" cy="440" r="1.2"/><circle cx="688" cy="440" r="1.2"/><circle cx="774" cy="440" r="1.2"/>
+    <circle cx="86" cy="495" r="1.2"/><circle cx="172" cy="495" r="1.2"/><circle cx="258" cy="495" r="1.2"/><circle cx="344" cy="495" r="1.2"/><circle cx="430" cy="495" r="1.2"/><circle cx="516" cy="495" r="1.2"/><circle cx="602" cy="495" r="1.2"/><circle cx="688" cy="495" r="1.2"/><circle cx="774" cy="495" r="1.2"/>
+  </g>
+
+  <!-- TOP HEADER BAR -->
+  <rect x="20" y="16" width="819" height="36" rx="7" fill="url(#headerGrad)" stroke="#0891b2" stroke-opacity="0.25" stroke-width="1" filter="url(#headerShadow)"/>
+  <text x="36" y="39" fill="#0891b2" font-size="10.5" opacity="0.7" letter-spacing="2">OMNIPAW KERNEL</text>
+  <text x="172" y="39" fill="#94a3b8" font-size="10.5" opacity="0.5">|</text>
+  <text x="184" y="39" fill="#1e40af" font-size="10.5" opacity="0.9" letter-spacing="1.5" font-weight="bold">CRYPTOGRAPHIC EXECUTION TRACE</text>
+  <rect x="766" y="22" width="60" height="18" rx="4" fill="#16a34a" fill-opacity="0.12" stroke="#16a34a" stroke-width="1" stroke-opacity="0.4"/>
+  <circle cx="776" cy="31" r="3.5" fill="#16a34a" opacity="0.9"/>
+  <text x="810" y="35" fill="#16a34a" font-size="8.5" text-anchor="end" opacity="0.9" font-weight="bold">VERIFIED</text>
+
+  <!-- ═══ PANEL 1: State Transitions ═══ -->
+  <rect x="20" y="66" width="258" height="222" rx="9" fill="white" stroke="url(#borderCyan)" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="20" y="66" width="258" height="5" rx="5" fill="#0891b2" opacity="0.6"/>
+  <text x="149" y="91" fill="#0891b2" font-size="9.5" font-weight="bold" text-anchor="middle" opacity="0.9" letter-spacing="1.5">STATE TRANSITIONS</text>
+
+  <!-- S0 -->
+  <rect x="34" y="100" width="230" height="38" rx="5" fill="#f8faff" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="47" y="115" fill="#94a3b8" font-size="8">STATE_ID · AGENT_INIT</text>
+  <text x="47" y="129" fill="#1e293b" font-size="9" font-weight="bold">S0 · INIT</text>
+  <text x="254" y="123" fill="#2563eb" font-size="8" text-anchor="end" opacity="0.7">t=0ms</text>
+
+  <line x1="149" y1="140" x2="149" y2="155" stroke="#0891b2" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#arrowCyan)"/>
+  <rect x="112" y="142" width="74" height="14" rx="3" fill="#e0f2fe"/>
+  <text x="149" y="152" fill="#0891b2" font-size="7.5" text-anchor="middle" opacity="0.9">hash(S0)</text>
+
+  <!-- S1 -->
+  <rect x="34" y="157" width="230" height="38" rx="5" fill="#f8faff" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="47" y="172" fill="#94a3b8" font-size="8">STATE_ID · TOOL_CALL</text>
+  <text x="47" y="186" fill="#1e293b" font-size="9" font-weight="bold">S1 · TOOL_EXEC</text>
+  <text x="254" y="180" fill="#2563eb" font-size="8" text-anchor="end" opacity="0.7">t=42ms</text>
+
+  <line x1="149" y1="197" x2="149" y2="212" stroke="#0891b2" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#arrowCyan)"/>
+  <rect x="106" y="199" width="86" height="14" rx="3" fill="#e0f2fe"/>
+  <text x="149" y="209" fill="#0891b2" font-size="7.5" text-anchor="middle" opacity="0.9">hash(S0+S1)</text>
+
+  <!-- S2 FINAL -->
+  <rect x="34" y="214" width="230" height="38" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="47" y="229" fill="#4ade80" font-size="8" fill-opacity="0.8">STATE_ID · COMPLETE</text>
+  <text x="47" y="243" fill="#16a34a" font-size="9" font-weight="bold">S2 · MEMORY_WRITE ✓</text>
+  <text x="254" y="237" fill="#16a34a" font-size="8" text-anchor="end" opacity="0.85">t=134ms</text>
+
+  <!-- ═══ PANEL 2: Merkle Hash Chain ═══ -->
+  <rect x="294" y="66" width="271" height="222" rx="9" fill="white" stroke="url(#borderBlue)" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="294" y="66" width="271" height="5" rx="5" fill="#2563eb" opacity="0.6"/>
+  <text x="429" y="91" fill="#2563eb" font-size="9.5" font-weight="bold" text-anchor="middle" opacity="0.9" letter-spacing="1.5">MERKLE HASH CHAIN</text>
+
+  <!-- Block 1 -->
+  <rect x="308" y="100" width="243" height="46" rx="5" fill="#f8faff" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+  <rect x="308" y="100" width="5" height="46" rx="3" fill="#2563eb" opacity="0.5"/>
+  <text x="322" y="116" fill="#94a3b8" font-size="7.5">BLOCK #001 · PREV: 0x0000...0000</text>
+  <text x="322" y="131" fill="#0891b2" font-size="8.5" font-weight="bold">0xa3f2c819...8c91d4e0</text>
+  <text x="542" y="131" fill="#2563eb" font-size="7.5" text-anchor="end" opacity="0.6">SHA-256</text>
+  <text x="322" y="142" fill="#94a3b8" font-size="7">tool: bash · duration: 42ms</text>
+
+  <line x1="429" y1="148" x2="429" y2="159" stroke="#2563eb" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="3,2"/>
+
+  <!-- Block 2 -->
+  <rect x="308" y="161" width="243" height="46" rx="5" fill="#f8faff" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+  <rect x="308" y="161" width="5" height="46" rx="3" fill="#2563eb" opacity="0.5"/>
+  <text x="322" y="177" fill="#94a3b8" font-size="7.5">BLOCK #002 · PREV: 0xa3f2...8c91</text>
+  <text x="322" y="192" fill="#0891b2" font-size="8.5" font-weight="bold">0x7d1eb453...4b23f901</text>
+  <text x="542" y="192" fill="#2563eb" font-size="7.5" text-anchor="end" opacity="0.6">SHA-256</text>
+  <text x="322" y="203" fill="#94a3b8" font-size="7">tool: filesystem · duration: 31ms</text>
+
+  <line x1="429" y1="209" x2="429" y2="220" stroke="#16a34a" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,2"/>
+
+  <!-- Merkle Root -->
+  <rect x="308" y="222" width="243" height="38" rx="5" fill="#eff6ff" stroke="#0891b2" stroke-width="1.2" stroke-opacity="0.4"/>
+  <text x="322" y="237" fill="#94a3b8" font-size="7.5">MERKLE ROOT · ALL BLOCKS</text>
+  <text x="322" y="252" fill="#0891b2" font-size="8.5" font-weight="bold">0xDEAD1337...C0DEBEEF · VALID</text>
+
+  <!-- ═══ PANEL 3: Invariant Checks ═══ -->
+  <rect x="581" y="66" width="258" height="222" rx="9" fill="white" stroke="url(#borderGreen)" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="581" y="66" width="258" height="5" rx="5" fill="#16a34a" opacity="0.6"/>
+  <text x="710" y="91" fill="#16a34a" font-size="9.5" font-weight="bold" text-anchor="middle" opacity="0.9" letter-spacing="1.5">INVARIANT CHECKS</text>
+
+  <rect x="595" y="100" width="230" height="22" rx="4" fill="#f0fdf4"/>
+  <rect x="595" y="100" width="4" height="22" rx="2" fill="#16a34a" opacity="0.8"/>
+  <text x="607" y="115" fill="#16a34a" font-size="8.5" font-weight="bold">INV-03</text>
+  <text x="648" y="115" fill="#475569" font-size="8.5">SharedStore Isolation · PASS</text>
+
+  <rect x="595" y="126" width="230" height="22" rx="4" fill="#f0fdf4"/>
+  <rect x="595" y="126" width="4" height="22" rx="2" fill="#16a34a" opacity="0.8"/>
+  <text x="607" y="141" fill="#16a34a" font-size="8.5" font-weight="bold">INV-07</text>
+  <text x="648" y="141" fill="#475569" font-size="8.5">Memory Quota Enforced · PASS</text>
+
+  <rect x="595" y="152" width="230" height="22" rx="4" fill="#f0fdf4"/>
+  <rect x="595" y="152" width="4" height="22" rx="2" fill="#16a34a" opacity="0.8"/>
+  <text x="607" y="167" fill="#16a34a" font-size="8.5" font-weight="bold">INV-09</text>
+  <text x="648" y="167" fill="#475569" font-size="8.5">Zombie Prevention · PASS</text>
+
+  <rect x="595" y="178" width="230" height="22" rx="4" fill="#f0fdf4"/>
+  <rect x="595" y="178" width="4" height="22" rx="2" fill="#16a34a" opacity="0.8"/>
+  <text x="607" y="193" fill="#16a34a" font-size="8.5" font-weight="bold">INV-15</text>
+  <text x="648" y="193" fill="#475569" font-size="8.5">Replay Hash Match · PASS</text>
+
+  <rect x="595" y="204" width="230" height="22" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1" stroke-opacity="0.4"/>
+  <rect x="595" y="204" width="4" height="22" rx="2" fill="#16a34a"/>
+  <text x="607" y="219" fill="#16a34a" font-size="8.5" font-weight="bold">15/15</text>
+  <text x="648" y="219" fill="#16a34a" font-size="8.5" font-weight="bold">ALL INVARIANTS PASSED ✓</text>
+
+  <rect x="595" y="234" width="230" height="40" rx="5" fill="#f8faff" stroke="#0891b2" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="710" y="251" fill="#94a3b8" font-size="8" text-anchor="middle">KERNEL SIGNATURE</text>
+  <text x="710" y="266" fill="#0891b2" font-size="8" text-anchor="middle" font-weight="bold">0xF00DCAFE...C0DE1337</text>
+
+  <!-- ═══ FULL-WIDTH PROOF OUTPUT PANEL ═══ -->
+  <rect x="20" y="304" width="819" height="228" rx="9" fill="white" stroke="url(#borderGreen)" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="20" y="304" width="819" height="5" rx="5" fill="#16a34a" opacity="0.5"/>
+
+  <rect x="20" y="309" width="819" height="32" rx="0" fill="#f0fdf4" fill-opacity="0.6"/>
+  <text x="38" y="331" fill="#16a34a" font-size="9.5" font-weight="bold" opacity="0.9" letter-spacing="1.5">INTEGRITY PROOF OUTPUT</text>
+  <text x="540" y="331" fill="#94a3b8" font-size="8.5">agent_id: omnipaw::core::0x1a3f</text>
+  <rect x="750" y="316" width="74" height="18" rx="4" fill="#16a34a" fill-opacity="0.1" stroke="#16a34a" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="787" y="329" fill="#16a34a" font-size="8" text-anchor="middle" font-weight="bold">PROOF VALID</text>
+
+  <!-- Code block -->
+  <rect x="36" y="348" width="787" height="172" rx="6" fill="#f8faff" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Left code column -->
+  <text x="52" y="368" fill="#cbd5e1" font-size="8">01</text>
+  <text x="74" y="368" fill="#16a34a" font-size="8.5" font-weight="bold">proof</text>
+  <text x="106" y="368" fill="#334155" font-size="8.5">.verify({</text>
+
+  <text x="52" y="384" fill="#cbd5e1" font-size="8">02</text>
+  <text x="74" y="384" fill="#94a3b8" font-size="8.5">  agent_id:      </text>
+  <text x="172" y="384" fill="#b45309" font-size="8.5">"omnipaw::core::0x1a3f"</text>
+
+  <text x="52" y="400" fill="#cbd5e1" font-size="8">03</text>
+  <text x="74" y="400" fill="#94a3b8" font-size="8.5">  state_root:    </text>
+  <text x="172" y="400" fill="#0891b2" font-size="8.5">"0xDEAD1337...C0DEBEEF"</text>
+
+  <text x="52" y="416" fill="#cbd5e1" font-size="8">04</text>
+  <text x="74" y="416" fill="#94a3b8" font-size="8.5">  transitions:   </text>
+  <text x="172" y="416" fill="#7c3aed" font-size="8.5">[ S0-&gt;S1, S1-&gt;S2, S2-&gt;FINAL ]</text>
+
+  <text x="52" y="432" fill="#cbd5e1" font-size="8">05</text>
+  <text x="74" y="432" fill="#94a3b8" font-size="8.5">  tool_calls:    </text>
+  <text x="172" y="432" fill="#7c3aed" font-size="8.5">[ bash::42ms, filesystem::31ms ]</text>
+
+  <text x="52" y="448" fill="#cbd5e1" font-size="8">06</text>
+  <text x="74" y="448" fill="#94a3b8" font-size="8.5">  mem_footprint: </text>
+  <text x="172" y="448" fill="#b45309" font-size="8.5">"48.2 MB · within quota"</text>
+
+  <text x="52" y="464" fill="#cbd5e1" font-size="8">07</text>
+  <text x="74" y="464" fill="#94a3b8" font-size="8.5">  invariants:    </text>
+  <text x="172" y="464" fill="#16a34a" font-size="8.5">15/15 · ALL PASSED</text>
+
+  <text x="52" y="480" fill="#cbd5e1" font-size="8">08</text>
+  <text x="74" y="480" fill="#94a3b8" font-size="8.5">  replay_match:  </text>
+  <text x="172" y="480" fill="#16a34a" font-size="8.5">true · hash verified</text>
+
+  <text x="52" y="496" fill="#cbd5e1" font-size="8">09</text>
+  <text x="74" y="496" fill="#334155" font-size="8.5">})</text>
+
+  <!-- Vertical divider -->
+  <line x1="430" y1="356" x2="430" y2="510" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Right code column -->
+  <text x="448" y="368" fill="#cbd5e1" font-size="8">10</text>
+  <text x="470" y="368" fill="#94a3b8" font-size="8.5">  sig_algorithm: </text>
+  <text x="568" y="368" fill="#b45309" font-size="8.5">"ECDSA-P256"</text>
+
+  <text x="448" y="384" fill="#cbd5e1" font-size="8">11</text>
+  <text x="470" y="384" fill="#94a3b8" font-size="8.5">  timestamp:     </text>
+  <text x="568" y="384" fill="#334155" font-size="8.5">"2026-02-26T11:04:22Z"</text>
+
+  <text x="448" y="400" fill="#cbd5e1" font-size="8">12</text>
+  <text x="470" y="400" fill="#94a3b8" font-size="8.5">  block_count:   </text>
+  <text x="568" y="400" fill="#7c3aed" font-size="8.5">2 · chain unbroken</text>
+
+  <text x="448" y="416" fill="#cbd5e1" font-size="8">13</text>
+  <text x="470" y="416" fill="#94a3b8" font-size="8.5">  kernel_panic:  </text>
+  <text x="568" y="416" fill="#16a34a" font-size="8.5">false · execution clean</text>
+
+  <text x="448" y="432" fill="#cbd5e1" font-size="8">14</text>
+  <text x="470" y="432" fill="#94a3b8" font-size="8.5">  kernel_sig:    </text>
+  <text x="568" y="432" fill="#0891b2" font-size="8.5">"0xF00DCAFE...C0DE1337"</text>
+
+  <text x="448" y="448" fill="#cbd5e1" font-size="8">15</text>
+  <text x="470" y="448" fill="#334155" font-size="8.5">})</text>
+
+  <!-- Result highlight -->
+  <rect x="448" y="458" width="357" height="22" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="460" y="473" fill="#16a34a" font-size="8.5" font-weight="bold">// ✓  PROOF_VALID · MATHEMATICAL GUARANTEE · NON-REPUDIABLE</text>
+
+  <text x="448" y="497" fill="#cbd5e1" font-size="8">16</text>
+  <text x="470" y="497" fill="#94a3b8" font-size="8.5">// Integrity is </text>
+  <text x="558" y="497" fill="#0891b2" font-size="8.5">cryptographically proven</text>
+  <text x="694" y="497" fill="#94a3b8" font-size="8.5">, not logged</text>
+
+  <!-- BOTTOM STATUS BAR -->
+  <rect x="20" y="536" width="819" height="12" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="20" y="536" width="204" height="12" rx="4" fill="#16a34a" fill-opacity="0.12"/>
+  <text x="122" y="546" fill="#16a34a" font-size="7.5" text-anchor="middle" opacity="0.9">STATE TRANSITIONS: 3/3 HASHED</text>
+  <rect x="230" y="536" width="199" height="12" rx="4" fill="#2563eb" fill-opacity="0.08"/>
+  <text x="329" y="546" fill="#2563eb" font-size="7.5" text-anchor="middle" opacity="0.9">HASH CHAIN: UNBROKEN · 2 BLOCKS</text>
+  <rect x="435" y="536" width="199" height="12" rx="4" fill="#7c3aed" fill-opacity="0.08"/>
+  <text x="534" y="546" fill="#7c3aed" font-size="7.5" text-anchor="middle" opacity="0.9">INVARIANTS: 15/15 PASSED</text>
+  <rect x="640" y="536" width="199" height="12" rx="4" fill="#16a34a" fill-opacity="0.1"/>
+  <text x="739" y="546" fill="#16a34a" font-size="7.5" text-anchor="middle" opacity="0.9">PROOF: VALID · NON-REPUDIABLE</text>
+</svg>

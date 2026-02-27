@@ -37,3 +37,21 @@ export { DelegationToken } from './delegation/types';
 
 // Logging
 export { ExecutionLogger, LogEntry } from './logging/logger';
+
+// Telemetry & Metrics
+export { TelemetryProvider } from './host/telemetry/provider';
+
+// Quotas & Rate Limits
+export { QuotaEnforcer, QuotaExceededError, ResourceQuota, ResourceConsumption } from './execution/quota';
+
+// Docker 
+export { DockerSandbox } from './host/sandbox/docker';
+
+// Plugins
+export { PluginManifest, PluginPermission, LoadedPlugin } from './plugins/types';
+export { PluginLoader } from './plugins/loader';
+export { PluginValidator } from './plugins/validator';
+
+// Swarm Orchestration
+export { SwarmProtocol } from './swarm/protocol';
+export { SwarmCoordinator } from './swarm/coordinator';

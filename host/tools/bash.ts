@@ -2,9 +2,11 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import { ToolManifest, ToolHandler, ToolResult } from '../../tools/types';
 
+import { DockerSandbox } from '../sandbox/docker';
+
 const execAsync = promisify(exec);
 
-export function createBashTool(timeoutMs: number = 5000): { manifest: ToolManifest, handler: ToolHandler } {
+export function createBashTool(timeoutMs: number = 5000, sandbox?: DockerSandbox): { manifest: ToolManifest, handler: ToolHandler } {
     return {
         manifest: {
             name: 'host.system.bash',
@@ -17,9 +19,14 @@ export function createBashTool(timeoutMs: number = 5000): { manifest: ToolManife
                     return { kind: 'ERROR', message: 'Missing or invalid command strictly required.' };
                 }
 
-                const { stdout, stderr } = await execAsync(args.command, { timeout: timeoutMs });
+                let output = '';
+                if (sandbox) {
+                    output = await sandbox.execute(args.command, timeoutMs);
+                } else {
+                    const { stdout, stderr } = await execAsync(args.command, { timeout: timeoutMs });
+                    output = (stdout || '') + (stderr || '');
+                }
 
-                const output = (stdout || '') + (stderr || '');
                 return { kind: 'SUCCESS', data: output.trim().substring(0, 4000) };
             } catch (e: any) {
                 return { kind: 'ERROR', message: `BASH_ERROR: ${e.message}` };
