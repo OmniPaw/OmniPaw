@@ -3,8 +3,8 @@
   "description": "Official documentation for Docus, also used as playground.",
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev"
+    "build": "nuxt build --extends ./layer",
+    "dev": "nuxt dev --extends ./layer"
   },
   "dependencies": {
     "@ai-sdk/vue": "3.0.97",
